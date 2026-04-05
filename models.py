@@ -1,15 +1,14 @@
-from sqlalchemy import String, Integer
-from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
+from sqlalchemy import Column, Integer, String, Float
+from sqlalchemy.orm import declarative_base
 
-class Base(DeclarativeBase):
-    pass
+Base = declarative_base()
 
 class Student(Base):
     __tablename__ = "students"
 
-    id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
-    last_name: Mapped[str] = mapped_column(String(100))   # Фамилия
-    first_name: Mapped[str] = mapped_column(String(100))  # Имя
-    faculty: Mapped[str] = mapped_column(String(100))    # Факультет
-    course_name: Mapped[str] = mapped_column(String(100)) # Курс
-    grade: Mapped[int] = mapped_column(Integer)          # Оценка
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    last_name = Column(String, nullable=False)   # Фамилия
+    first_name = Column(String, nullable=False)  # Имя
+    faculty = Column(String, nullable=False)     # Факультет
+    subject = Column(String, nullable=False)     # Курс (предмет!)
+    grade = Column(Float, nullable=False)        # Оценка

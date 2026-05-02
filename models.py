@@ -12,3 +12,10 @@ class Student(Base):
     faculty = Column(String, nullable=False)     # Факультет
     subject = Column(String, nullable=False)     # Курс (предмет!)
     grade = Column(Float, nullable=False)        # Оценка
+
+class User(Base):
+    __tablename__ = "users"
+
+    id = Column(Integer, primary_key=True, index=True)
+    username = Column(String, unique=True, index=True)
+    password = Column(String)

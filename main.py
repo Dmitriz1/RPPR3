@@ -13,6 +13,9 @@ from crud import (
     update_student_grade,
     delete_student
 )
+from auth_router import router as auth_router
+from student_router import router as student_router
+
 from fill_data import fill_db_from_csv
 from export_csv import export_db_to_csv
 
@@ -21,6 +24,8 @@ Base.metadata.create_all(bind=engine)
 
 app = FastAPI(title="Students API")
 
+app.include_router(auth_router)
+app.include_router(student_router)
 
 # Заполнение базы из CSV
 @app.post("/fill")
